@@ -1,0 +1,8 @@
+.vs/
+.vscode/
+src/ClickGame/obj/
+*.exe
+*.json
+*.dll
+*.pdb
+!DxLibW_x64.dll
