@@ -24,5 +24,5 @@ internal interface IResourceManageable
     /// リソースを取得する
     /// </summary>
     /// <param name="resourceName">リソースの名前</param>
-    int GetResource(string resourceName);
+    object GetResource(string resourceName);
 }

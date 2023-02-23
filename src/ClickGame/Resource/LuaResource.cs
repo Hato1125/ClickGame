@@ -1,31 +1,28 @@
-using DxLibDLL;
+﻿using NLua;
 
 namespace ClickGame;
 
-internal class GraphicsResource : IResourceManageable
+internal class LuaResource : IResourceManageable
 {
-    private readonly Dictionary<string, int> Resources = new();
+    private readonly Dictionary<string, Lua> Resources = new();
 
     public void AddResource(string resourceName, string fileName)
     {
-        int img = DX.LoadGraph(fileName);
-
-        if (img == -1)
-            Console.WriteLine("[Warning] Failed to load resource.");
-
-        Resources.Add(resourceName, img);
+        var lua = new Lua();
+        lua.DoFile(fileName);
+        Resources.Add(resourceName, lua);
     }
 
     public void RemoveResource(string resourceName)
     {
-        DX.DeleteGraph(Resources[resourceName]);
+        Resources[resourceName].Dispose();
         Resources.Remove(resourceName);
     }
 
     public void RemoveAllResource()
     {
         foreach (var item in Resources)
-            DX.DeleteGraph(item.Value);
+            item.Value.Dispose();
 
         Resources.Clear();
     }

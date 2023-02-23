@@ -1,9 +1,13 @@
+using ClickGame.GameScene.TitleScene;
+
 namespace ClickGame.GameScene;
 
 internal class Title : SceneBase
 {
     public override void Init()
     {
+        Children.Add(new SceneSelect());
+
         base.Init();
     }
 

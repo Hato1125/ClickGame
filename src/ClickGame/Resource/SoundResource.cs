@@ -30,6 +30,6 @@ internal class SoundResource : IResourceManageable
         Resources.Clear();
     }
 
-    public int GetResource(string resourceName)
+    public object GetResource(string resourceName)
         => Resources[resourceName];
 }
