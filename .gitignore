@@ -6,3 +6,4 @@ src/ClickGame/obj/
 *.dll
 *.pdb
 !DxLibW_x64.dll
+!NLua.dll
