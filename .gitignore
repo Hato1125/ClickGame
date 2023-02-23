@@ -1,6 +1,7 @@
 .vs/
 .vscode/
 src/ClickGame/obj/
+build/ClickGame/Debug/net7.0/windows/runtimes/
 *.exe
 *.json
 *.dll

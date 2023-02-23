@@ -56,6 +56,7 @@ internal class App
             || DX.SetWindowSize(CliantWidth, CliantHeight) == -1
             || DX.SetWindowText(AppName) == -1
             || DX.SetMainWindowClassName(AppName) == -1
+            || DX.SetAlwaysRunFlag(DX.TRUE) == -1
             || DX.ChangeWindowMode(DX.TRUE) == -1
             || DX.DxLib_Init() == -1)
         {
