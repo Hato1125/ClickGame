@@ -76,10 +76,8 @@ internal class App
             DX.ClearDrawScreen();
 
             Mouse.Update();
+            Keyboard.Update();
             SceneManeger.SceneView();
-
-            if (Mouse.IsPushed(MouseKey.Left))
-                Console.WriteLine("[Log] Push");
 
             DX.ScreenFlip();
             FramelateLimiter();

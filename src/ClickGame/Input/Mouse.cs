@@ -4,7 +4,7 @@ namespace ClickGame;
 
 internal static class Mouse
 {
-    private static sbyte[] value = new sbyte[8];
+    private static readonly sbyte[] value = new sbyte[8];
 
     /// <summary>
     /// Windowの位置基準のマウスカーソルのX座標
