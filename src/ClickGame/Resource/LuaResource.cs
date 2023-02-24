@@ -2,24 +2,24 @@
 
 namespace ClickGame;
 
-internal class LuaResource : IResourceManageable
+internal static class LuaResource
 {
-    private readonly Dictionary<string, Lua> Resources = new();
+    private static readonly Dictionary<string, Lua> Resources = new();
 
-    public void AddResource(string resourceName, string fileName)
+    public static void AddResource(string resourceName, string fileName)
     {
         var lua = new Lua();
         lua.DoFile(fileName);
         Resources.Add(resourceName, lua);
     }
 
-    public void RemoveResource(string resourceName)
+    public static void RemoveResource(string resourceName)
     {
         Resources[resourceName].Dispose();
         Resources.Remove(resourceName);
     }
 
-    public void RemoveAllResource()
+    public static void RemoveAllResource()
     {
         foreach (var item in Resources)
             item.Value.Dispose();
@@ -27,6 +27,6 @@ internal class LuaResource : IResourceManageable
         Resources.Clear();
     }
 
-    public object GetResource(string resourceName)
+    public static Lua GetResource(string resourceName)
         => Resources[resourceName];
 }

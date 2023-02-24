@@ -2,11 +2,11 @@ using DxLibDLL;
 
 namespace ClickGame;
 
-internal class SoundResource : IResourceManageable
+internal static class SoundResource
 {
-    private readonly Dictionary<string, int> Resources = new();
+    private static readonly Dictionary<string, int> Resources = new();
 
-    public void AddResource(string resourceName, string fileName)
+    public static void AddResource(string resourceName, string fileName)
     {
         int img = DX.LoadSoundMem(fileName);
 
@@ -16,13 +16,13 @@ internal class SoundResource : IResourceManageable
         Resources.Add(resourceName, img);
     }
 
-    public void RemoveResource(string resourceName)
+    public static void RemoveResource(string resourceName)
     {
         DX.DeleteSoundMem(Resources[resourceName]);
         Resources.Remove(resourceName);
     }
 
-    public void RemoveAllResource()
+    public static void RemoveAllResource()
     {
         foreach (var item in Resources)
             DX.DeleteSoundMem(item.Value);
@@ -30,6 +30,6 @@ internal class SoundResource : IResourceManageable
         Resources.Clear();
     }
 
-    public object GetResource(string resourceName)
+    public static int GetResource(string resourceName)
         => Resources[resourceName];
 }

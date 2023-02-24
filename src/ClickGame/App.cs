@@ -75,7 +75,11 @@ internal class App
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
             DX.ClearDrawScreen();
 
+            Mouse.Update();
             SceneManeger.SceneView();
+
+            if (Mouse.IsPushed(MouseKey.Left))
+                Console.WriteLine("[Log] Push");
 
             DX.ScreenFlip();
             FramelateLimiter();
@@ -87,7 +91,9 @@ internal class App
     private void Finalizer()
     {
         SceneManeger.AllClear();
-        ResourceManeger.RemoveResource();
+        GraphicsResource.RemoveAllResource();
+        SoundResource.RemoveAllResource();
+        LuaResource.RemoveAllResource();
         DX.DxLib_End();
     }
 
