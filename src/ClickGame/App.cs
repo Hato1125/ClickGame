@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using DxLibDLL;
-using ClickGame.GameScene;
+using ClickGame.GameScene.TitleScene;
+using ClickGame.GameScene.GameScene;
 
 namespace ClickGame;
 
@@ -50,7 +51,7 @@ internal class App
 
     private void Initialize()
     {
-        Console.WriteLine("[Log] Start Dxlib initialization.");
+        Tracer.WriteInfo("Start Dxlib initialization.");
         if (DX.SetOutApplicationLogValidFlag(DX.FALSE) == -1
             || DX.SetGraphMode(CliantWidth, CliantHeight, 32) == -1
             || DX.SetWindowSize(CliantWidth, CliantHeight) == -1
@@ -60,11 +61,12 @@ internal class App
             || DX.ChangeWindowMode(DX.TRUE) == -1
             || DX.DxLib_Init() == -1)
         {
-            Console.WriteLine("[Log] Failed to initialize Dxlib.");
+            Tracer.WriteError("Failed to initialize Dxlib.");
             throw new Exception("Failed to initialize Dxlib.");
         }
 
         SceneManeger.AddScene("Title", new Title());
+        SceneManeger.AddScene("Game", new Game());
     }
 
     private void WindowLoop()

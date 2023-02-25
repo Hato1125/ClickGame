@@ -24,7 +24,7 @@ internal static class SceneManeger
     /// <param name="scene">シーンの実態</param>
     public static void AddScene(string sceneName, SceneBase scene)
     {
-        Console.WriteLine($"[Log] Add {sceneName} scene");
+        Tracer.WriteInfo($"Add {sceneName} scene");
         scenes.Add(sceneName, scene);
 
         if (NowSceneName == string.Empty)
@@ -37,7 +37,7 @@ internal static class SceneManeger
     /// <param name="sceneName">シーンの名前</param>
     public static void SetScene(string sceneName)
     {
-        Console.WriteLine($"[Log] Set {sceneName} scene.");
+        Tracer.WriteInfo($"Set {sceneName} scene.");
         if (scene != null)
         {
             scene.Finish();
@@ -54,7 +54,7 @@ internal static class SceneManeger
     /// <param name="sceneName">シーンの名前</param>
     public static void RemoveScene(string sceneName)
     {
-        Console.WriteLine($"[Log] Delete {sceneName} scene.");
+        Tracer.WriteInfo($"Delete {sceneName} scene.");
         if (scene == scenes[sceneName])
         {
             NowSceneName = string.Empty;
@@ -70,7 +70,7 @@ internal static class SceneManeger
     /// </summary>
     public static void AllClear()
     {
-        Console.WriteLine("[Log] Delete all scenes.");
+        Tracer.WriteInfo("Delete all scenes.");
         foreach (var item in scenes)
             item.Value.Finish();
 

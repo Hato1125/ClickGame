@@ -1,52 +1,88 @@
 ﻿using DxLibDLL;
+using ClickGame.GUIControls;
 
 namespace ClickGame.GameScene.TitleScene;
 
 internal class SceneSelect : SceneBase
 {
     private readonly int[] buttonHandle;
-    private readonly Point[] buttonPosition;
+    private readonly string[] gotoScene;
+    private readonly UIButton[] buttons;
+
+    private string gotoSceneName;
 
     public SceneSelect()
     {
+        gotoSceneName = string.Empty;
         GraphicsResource.AddResource("StartButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\StartButton.png");
         GraphicsResource.AddResource("SettingButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\SettingButton.png");
         GraphicsResource.AddResource("ExitButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\ExitButton.png");
 
+        gotoScene = new string[]
+        {
+            "Game",
+            "Setting",
+            "Exit",
+        };
+
         buttonHandle = new int[]
         {
             GraphicsResource.GetResource("StartButton"),
+
             GraphicsResource.GetResource("SettingButton"),
             GraphicsResource.GetResource("ExitButton"),
         };
 
-        buttonPosition = new Point[buttonHandle.Length];
-        for (int i = 0; i < buttonHandle.Length; i++)
+        buttons = new UIButton[buttonHandle.Length];
+        for (int i = 0; i < buttons.Length; i++)
         {
-            DX.GetGraphSize(buttonHandle[i], out int w, out int h);
-            int center_x = (App.CliantWidth - w) / 2;
-            int center_y = (App.CliantHeight - h) / 2;
-            int ypos = i * (h + 10);
+            buttons[i] = new(buttonHandle[i]);
 
-            buttonPosition[i] = new(center_x, center_y + ypos);
+            // UIの位置の計算
+            int center_x = (App.CliantWidth - buttons[i].Width) / 2;
+            int center_y = (App.CliantHeight - buttons[i].Height) / 2;
+            int ypos = i * (buttons[i].Height + 10);
+            buttons[i].X = center_x;
+            buttons[i].Y = center_y + ypos;
         }
     }
 
     public override void Init()
     {
+        foreach (var btns in buttons)
+            btns.IsInput = true;
     }
 
     public override void Update()
     {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].Update();
+
+            if (buttons[i].IsSeparate())
+            {
+                // ボタンの操作をできなくする
+                foreach (var btns in buttons)
+                    btns.IsInput = false;
+
+                // 遷移情報をセット
+                gotoSceneName = gotoScene[i];
+                Title.OnFadeOutEnd += GotoScene;
+                Title.IsFadeOut = true;
+            }
+        }
     }
 
     public override void Draw()
     {
-        for(int i = 0; i < buttonHandle.Length; i++)
-            DX.DrawGraph(buttonPosition[i].X, buttonPosition[i].Y, buttonHandle[i], DX.TRUE);
+        foreach (var btns in buttons)
+            btns.Draw();
     }
 
     public override void Finish()
     {
     }
+
+    private void GotoScene()
+        => SceneManeger.SetScene(gotoSceneName);
 }

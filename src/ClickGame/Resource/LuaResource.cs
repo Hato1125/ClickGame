@@ -8,9 +8,16 @@ internal static class LuaResource
 
     public static void AddResource(string resourceName, string fileName)
     {
-        var lua = new Lua();
-        lua.DoFile(fileName);
-        Resources.Add(resourceName, lua);
+        try
+        {
+            var lua = new Lua();
+            lua.DoFile(fileName);
+            Resources.Add(resourceName, lua);
+        }
+        catch
+        {
+            Tracer.WriteError("Failed to load Lua resource.");
+        }
     }
 
     public static void RemoveResource(string resourceName)
@@ -21,6 +28,7 @@ internal static class LuaResource
 
     public static void RemoveAllResource()
     {
+        Tracer.WriteInfo("Remove all Lua resources.");
         foreach (var item in Resources)
             item.Value.Dispose();
 

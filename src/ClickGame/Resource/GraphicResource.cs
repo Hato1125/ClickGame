@@ -11,7 +11,7 @@ internal static class GraphicsResource
         int img = DX.LoadGraph(fileName);
 
         if (img == -1)
-            Console.WriteLine("[Warning] Failed to load resource.");
+            Tracer.WriteWarning("Failed to load resource.");
 
         Resources.Add(resourceName, img);
     }
@@ -24,6 +24,7 @@ internal static class GraphicsResource
 
     public static void RemoveAllResource()
     {
+        Tracer.WriteInfo("Delete all graphic resources.");
         foreach (var item in Resources)
             DX.DeleteGraph(item.Value);
 
