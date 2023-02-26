@@ -65,6 +65,8 @@ internal class App
             throw new Exception("Failed to initialize Dxlib.");
         }
 
+        LoadGraphics.Load();
+
         SceneManeger.AddScene("Title", new Title());
         SceneManeger.AddScene("Game", new Game());
     }

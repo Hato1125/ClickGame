@@ -14,10 +14,6 @@ internal class SceneSelect : SceneBase
     public SceneSelect()
     {
         gotoSceneName = string.Empty;
-        GraphicsResource.AddResource("StartButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\StartButton.png");
-        GraphicsResource.AddResource("SettingButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\SettingButton.png");
-        GraphicsResource.AddResource("ExitButton", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\ExitButton.png");
-
         gotoScene = new string[]
         {
             "Game",

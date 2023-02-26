@@ -13,12 +13,6 @@ internal class Title : SceneBase
     public static bool IsFadeOut { get; set; }
     public static event Action? OnFadeOutEnd = delegate { };
 
-    public Title()
-    {
-        GraphicsResource.AddResource("Background", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\Background.png");
-        GraphicsResource.AddResource("TitleLogo", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\TitleLogo.png");
-    }
-
     public override void Init()
     {
         Children.Add(new SceneSelect());
@@ -28,6 +22,7 @@ internal class Title : SceneBase
         int h = DX.GetFontSizeToHandle(devNameHandle);
         devNamePosX = 15;
         devNamePosY = App.CliantHeight - (h + 15);
+        counter = 0;
 
         base.Init();
     }
@@ -42,7 +37,7 @@ internal class Title : SceneBase
     {
         DX.GetGraphSize(GraphicsResource.GetResource("TitleLogo"), out int tw, out int th);
 
-        DX.DrawGraph(0, 0, GraphicsResource.GetResource("Background"), DX.TRUE);
+        DX.DrawGraph(0, 0, GraphicsResource.GetResource("TitleBack"), DX.TRUE);
         DX.DrawGraph((App.CliantWidth - tw) / 2, 150, GraphicsResource.GetResource("TitleLogo"), DX.TRUE);
         DX.DrawStringToHandle(devNamePosX, devNamePosY, DEVNAME, DEVCOLOR, devNameHandle);
 
