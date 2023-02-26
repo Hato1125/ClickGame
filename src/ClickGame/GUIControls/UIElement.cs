@@ -34,16 +34,6 @@ internal class UIElement
     public bool IsInput { get; set; }
 
     /// <summary>
-    /// UIの水平方向の位置
-    /// </summary>
-    public HorizontalPosition HorizontalPosition { get; set; }
-
-    /// <summary>
-    /// UIの垂直方向の位置
-    /// </summary>
-    public VerticalPosition VerticalPosition { get; set; }
-
-    /// <summary>
     /// 更新時に呼ばれる
     /// </summary>
     public event Action? OnUpdate = delegate { };
@@ -90,6 +80,7 @@ internal class UIElement
     /// </summary>
     public void Update()
     {
+        const int a = 100;
         CreateDrawArea();
         OnUpdate?.Invoke();
 

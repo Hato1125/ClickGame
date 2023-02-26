@@ -4,15 +4,30 @@ namespace ClickGame.GameScene.TitleScene;
 
 internal class Title : SceneBase
 {
+    private const string DEVNAME = "Developer: Hato1125";
+    private const uint DEVCOLOR = 0xffffff;
+    private int devNameHandle;
+    private int devNamePosX;
+    private int devNamePosY;
     private double counter;
     public static bool IsFadeOut { get; set; }
     public static event Action? OnFadeOutEnd = delegate { };
 
-    public override void Init()
+    public Title()
     {
         GraphicsResource.AddResource("Background", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\Background.png");
         GraphicsResource.AddResource("TitleLogo", $"{AppContext.BaseDirectory}Asset\\Graphics\\Title\\TitleLogo.png");
+    }
+
+    public override void Init()
+    {
         Children.Add(new SceneSelect());
+        DX.SetFontCacheCharNum(DEVNAME.Length);
+        devNameHandle = DX.CreateFontToHandle("Segoe UI", 20, 10, DX.DX_FONTTYPE_ANTIALIASING_16X16);
+        DX.SetFontCacheCharNum(0);
+        int h = DX.GetFontSizeToHandle(devNameHandle);
+        devNamePosX = 15;
+        devNamePosY = App.CliantHeight - (h + 15);
 
         base.Init();
     }
@@ -29,6 +44,7 @@ internal class Title : SceneBase
 
         DX.DrawGraph(0, 0, GraphicsResource.GetResource("Background"), DX.TRUE);
         DX.DrawGraph((App.CliantWidth - tw) / 2, 150, GraphicsResource.GetResource("TitleLogo"), DX.TRUE);
+        DX.DrawStringToHandle(devNamePosX, devNamePosY, DEVNAME, DEVCOLOR, devNameHandle);
 
         base.Draw();
         DrawFadeOut();
