@@ -30,6 +30,11 @@ internal class App
     public static readonly string AppVer = "1.0.0";
 
     /// <summary>
+    /// ランダム
+    /// </summary>
+    public static readonly Random Random = new Random(DX.GetRand(1000));
+
+    /// <summary>
     /// メインループの1Tickの時間
     /// </summary>
     public static TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -103,7 +108,7 @@ internal class App
     {
         double ms = 1.0 / MaxFramelate;
 
-        if(stopwatch.Elapsed.TotalSeconds < ms)
+        if (stopwatch.Elapsed.TotalSeconds < ms)
         {
             double sleepMs = (ms - stopwatch.Elapsed.TotalSeconds) * 1000.0;
             Thread.Sleep((int)sleepMs);
