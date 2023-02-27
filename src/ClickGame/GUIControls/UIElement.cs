@@ -80,7 +80,6 @@ internal class UIElement
     /// </summary>
     public void Update()
     {
-        const int a = 100;
         CreateDrawArea();
         OnUpdate?.Invoke();
 
