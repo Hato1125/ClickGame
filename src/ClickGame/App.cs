@@ -32,7 +32,7 @@ internal class App
     /// <summary>
     /// ランダム
     /// </summary>
-    public static readonly Random Random = new Random(DX.GetRand(1000));
+    public static readonly Random Random = new(2023);
 
     /// <summary>
     /// メインループの1Tickの時間

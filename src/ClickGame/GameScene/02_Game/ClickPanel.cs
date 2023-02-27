@@ -38,7 +38,10 @@ internal class ClickPanel : SceneBase
 
         colision.Update();
         if (colision.IsPushed())
+        {
+            Number.ClickNumber++;
             isAnimation = true;
+        }
 
         if(isAnimation)
         {
