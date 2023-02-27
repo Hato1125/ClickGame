@@ -12,6 +12,7 @@ internal class Game : SceneBase
         Children.Add(new Background());
         Children.Add(new ClickPanel());
         Children.Add(new NumberDisplay());
+        Children.Add(new Shop());
         isFadeIn = true;
 
         base.Init();
