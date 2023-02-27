@@ -27,6 +27,7 @@ internal static class LoadGraphics
     private static void LoadGameImg()
     {
         GraphicsResource.AddResource("GameBack", $"{FILE}{GAME}Background.png");
+        GraphicsResource.AddResource("ClickPanel", $"{FILE}{GAME}ClickPanel.png");
         GraphicsResource.AddResource("Effect_1", $"{FILE}{GAME}Effect\\Effect_1.png");
         GraphicsResource.AddResource("Effect_2", $"{FILE}{GAME}Effect\\Effect_2.png");
         GraphicsResource.AddResource("Effect_3", $"{FILE}{GAME}Effect\\Effect_3.png");

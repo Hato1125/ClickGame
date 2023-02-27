@@ -10,6 +10,7 @@ internal class Game : SceneBase
     public override void Init()
     {
         Children.Add(new Background());
+        Children.Add(new ClickPanel());
         isFadeIn = true;
 
         base.Init();
