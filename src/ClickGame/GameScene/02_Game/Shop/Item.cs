@@ -12,11 +12,6 @@ internal class Item
     public double AddIntervalMs { get; init; }
 
     /// <summary>
-    /// 値段
-    /// </summary>
-    public long Price { get; init; }
-
-    /// <summary>
     /// 追加する数
     /// </summary>
     public long AddNumber { get; init; }
@@ -25,12 +20,10 @@ internal class Item
     /// アイテムを初期化する
     /// </summary>
     /// <param name="addInterValMs">追加する間隔</param>
-    /// <param name="price">値段</param>
     /// <param name="addNum">追加する数</param>
-    public Item(double addInterValMs, long price, long addNum)
+    public Item(double addIntervalMs, long addNum)
     {
-        AddIntervalMs = AddIntervalMs;
-        Price = price;
+        AddIntervalMs = addIntervalMs;
         AddNumber = addNum;
     }
 

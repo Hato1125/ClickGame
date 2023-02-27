@@ -32,5 +32,7 @@ internal static class LoadGraphics
         GraphicsResource.AddResource("Effect_2", $"{FILE}{GAME}Effect\\Effect_2.png");
         GraphicsResource.AddResource("Effect_3", $"{FILE}{GAME}Effect\\Effect_3.png");
         GraphicsResource.AddResource("ShopItemPanel", $"{FILE}{GAME}Shop\\ShopItemPanel.png");
+        GraphicsResource.AddResource("ClickerIcon", $"{FILE}{GAME}Shop\\ClickerIcon.png");
+        GraphicsResource.AddResource("TwinClickerIcon", $"{FILE}{GAME}Shop\\TwinClickerIcon.png");
     }
 }
