@@ -54,11 +54,14 @@ internal class Effect
         // ラジアンを求める
         double angle = posY * (180.0 / (App.CliantHeight + effectHeight));
         double rad = (angle * Math.PI) / 180.0;
+        double depth = (scale * 255);
 
         DX.SetDrawMode(DX.DX_DRAWMODE_BILINEAR);
-        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ADD, 120);
+        DX.SetDrawBright((int)depth, (int)depth, (int)depth);
+        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ADD, (int)depth);
         DX.DrawRotaGraphF(posX, posY, scale, Math.Sin(rad), effectHandle, DX.TRUE);
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 255);
+        DX.SetDrawBright(255, 255, 255);
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);
     }
 }

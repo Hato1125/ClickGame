@@ -2,12 +2,10 @@
 
 namespace ClickGame.GameScene.GameScene;
 
-internal class Number : SceneBase
+internal class NumberDisplay : SceneBase
 {
     private const uint COLOR = 0xffffff;
     private int fontHandle;
-
-    public static long ClickNumber { get; set; }
 
     public override void Init()
     {
@@ -18,16 +16,12 @@ internal class Number : SceneBase
         base.Init();
     }
 
-    public override void Update()
-    {
-        base.Update();
-    }
-
     public override void Draw()
     {
-        int width = DX.GetDrawStringWidthToHandle(ClickNumber.ToString(), ClickNumber.ToString().Length, fontHandle);
+        var clickNumStr = ClickManeger.ClickNum.ToString();
+        int width = DX.GetDrawStringWidthToHandle(clickNumStr, clickNumStr.Length, fontHandle);
         DX.SetDrawMode(DX.DX_DRAWMODE_BILINEAR);
-        DX.DrawStringFToHandle((App.CliantWidth - width) / 2.0f, 50, ClickNumber.ToString(), COLOR, fontHandle);
+        DX.DrawStringFToHandle((App.CliantWidth - width) / 2.0f, 50, clickNumStr, COLOR, fontHandle);
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);
 
         base.Draw();
