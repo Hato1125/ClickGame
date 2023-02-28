@@ -34,6 +34,11 @@ internal class UIElement
     public int Height { get; set; }
 
     /// <summary>
+    /// 透明度
+    /// </summary>
+    public byte Opacity { get; set; }
+
+    /// <summary>
     /// ユーザの操作を受け付けるか
     /// </summary>
     public bool IsInput { get; set; }
@@ -80,6 +85,7 @@ internal class UIElement
     /// <param name="height">高さ</param>
     public UIElement(int width, int height)
     {
+        Opacity = 255;
         Width = width;
         Height = height;
         IsInput = true;
@@ -118,7 +124,9 @@ internal class UIElement
         OnMainPaint?.Invoke();
         DX.SetDrawScreen(nowScreen);
 
+        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, Opacity);
         DX.DrawGraph(X, Y, gHandle, DX.TRUE);
+        DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 255);
     }
 
     /// <summary>

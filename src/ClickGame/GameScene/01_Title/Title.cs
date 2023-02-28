@@ -23,6 +23,7 @@ internal class Title : SceneBase
         devNamePosX = 15;
         devNamePosY = App.CliantHeight - (h + 15);
         counter = 0;
+        IsFadeOut = false;
 
         base.Init();
     }

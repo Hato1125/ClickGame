@@ -4,8 +4,18 @@ namespace ClickGame.GameScene.GameScene;
 
 internal class Game : SceneBase
 {
-    private double counter;
-    private bool isFadeIn;
+    private static double counter;
+    public static bool IsFadeIn { get; set; }
+    public static bool IsFadeOutEnd
+    {
+        get
+        {
+            if (!IsFadeIn && counter <= 0)
+                return true;
+            else
+                return false;
+        }
+    }
 
     public override void Init()
     {
@@ -13,7 +23,8 @@ internal class Game : SceneBase
         Children.Add(new ClickPanel());
         Children.Add(new NumberDisplay());
         Children.Add(new Shop());
-        isFadeIn = true;
+        Children.Add(new Continue());
+        IsFadeIn = true;
 
         base.Init();
     }
@@ -21,6 +32,7 @@ internal class Game : SceneBase
     public override void Update()
     {
         TickFadeIn();
+        TickFadeOut();
 
         base.Update();
     }
@@ -28,7 +40,7 @@ internal class Game : SceneBase
     public override void Draw()
     {
         base.Draw();
-        DrawFadeIn();
+        DrawFade();
     }
 
     public override void Finish()
@@ -38,23 +50,26 @@ internal class Game : SceneBase
 
     private void TickFadeIn()
     {
-        if (!isFadeIn)
+        if (!IsFadeIn || counter >= 90)
             return;
 
         counter += App.GameTime.TotalSeconds * 100;
-
-        if (counter > 90)
-        {
+        if (counter >= 90)
             counter = 90;
-            isFadeIn = false;
-        }
     }
 
-    private void DrawFadeIn()
+    private void TickFadeOut()
     {
-        if (!isFadeIn)
+        if (IsFadeIn || counter <= 0)
             return;
 
+        counter -= App.GameTime.TotalSeconds * 100;
+        if (counter <= 0)
+            counter = 0;
+    }
+
+    private void DrawFade()
+    {
         double opacity = 255 - Math.Sin(counter * Math.PI / 180.0) * 255;
 
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)opacity);
