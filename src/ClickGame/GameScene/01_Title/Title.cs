@@ -1,4 +1,5 @@
 using DxLibDLL;
+using ClickGame.Utilt;
 
 namespace ClickGame.GameScene.TitleScene;
 
@@ -9,8 +10,7 @@ internal class Title : SceneBase
     private int devNameHandle;
     private int devNamePosX;
     private int devNamePosY;
-    private double counter;
-    public static bool IsFadeOut { get; set; }
+    public static readonly FadeOut FadeOut = new(0.001f, 2);
     public static event Action? OnFadeOutEnd = delegate { };
 
     public override void Init()
@@ -22,15 +22,19 @@ internal class Title : SceneBase
         int h = DX.GetFontSizeToHandle(devNameHandle);
         devNamePosX = 15;
         devNamePosY = App.CliantHeight - (h + 15);
-        counter = 0;
-        IsFadeOut = false;
+        FadeOut.Reset();
+        FadeOut.Stop();
 
         base.Init();
     }
 
     public override void Update()
     {
-        TickFadeOut();
+        FadeOut.Tick();
+
+        if(FadeOut.Counter.IsEnd)
+            OnFadeOutEnd?.Invoke();
+
         base.Update();
     }
 
@@ -51,28 +55,12 @@ internal class Title : SceneBase
         base.Finish();
     }
 
-    private void TickFadeOut()
-    {
-        if (!IsFadeOut)
-            return;
-
-        counter += App.GameTime.TotalSeconds * 100;
-
-        if (counter > 90)
-        {
-            counter = 90;
-            OnFadeOutEnd?.Invoke();
-        }
-    }
-
     private void DrawFadeOut()
     {
-        if (!IsFadeOut)
+        if (!FadeOut.Counter.IsStart)
             return;
 
-        double opacity = Math.Sin(counter * Math.PI / 180.0) * 255;
-
-        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)opacity);
+        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)FadeOut.Value);
         DX.DrawFillBox(0, 0, App.CliantWidth, App.CliantHeight, 0x000000);
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 255);
     }

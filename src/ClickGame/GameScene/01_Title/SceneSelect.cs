@@ -64,7 +64,7 @@ internal class SceneSelect : SceneBase
                 // 遷移情報をセット
                 gotoSceneName = gotoScene[i];
                 Title.OnFadeOutEnd += GotoScene;
-                Title.IsFadeOut = true;
+                Title.FadeOut.Start();
             }
         }
     }

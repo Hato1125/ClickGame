@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using DxLibDLL;
+using ClickGame.Utilt;
 using ClickGame.GameScene.TitleScene;
 using ClickGame.GameScene.GameScene;
 
