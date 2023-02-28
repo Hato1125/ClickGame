@@ -22,7 +22,7 @@ internal class UIButton : UIElement
         Width = w;
         Height = h;
 
-        OnPaint += Paint;
+        OnMainPaint += Paint;
         OnUpdate += Tick;
     }
 
@@ -64,6 +64,16 @@ internal class UIButton : UIElement
             (float)scale,
             0.0f,
             imgHandle,
+            DX.TRUE
+        );
+
+        DX.DrawRotaGraph2F(
+            Width / 2.0f,
+            Height / 2.0f,
+            rX, rY,
+            (float)scale,
+            0.0f,
+            paintHandle,
             DX.TRUE
         );
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);

@@ -9,6 +9,11 @@ internal class UIElement
     private int height;
 
     /// <summary>
+    /// ペイントハンドル
+    /// </summary>
+    protected int paintHandle;
+
+    /// <summary>
     /// UIのX座標
     /// </summary>
     public int X { get; set; }
@@ -64,6 +69,11 @@ internal class UIElement
     public event Action? OnSeparate = delegate { };
 
     /// <summary>
+    /// メインのペイント
+    /// </summary>
+    protected event Action? OnMainPaint = delegate { };
+
+    /// <summary>
     /// UIElementを初期化する
     /// </summary>
     /// <param name="width">横幅</param>
@@ -104,7 +114,8 @@ internal class UIElement
         int nowScreen = DX.GetDrawScreen();
         DX.SetDrawScreen(gHandle);
         DX.ClearDrawScreen();
-        OnPaint?.Invoke();
+        OnPaintPanel();
+        OnMainPaint?.Invoke();
         DX.SetDrawScreen(nowScreen);
 
         DX.DrawGraph(X, Y, gHandle, DX.TRUE);
@@ -150,10 +161,21 @@ internal class UIElement
         if (width != Width || height != Height)
         {
             DX.DeleteGraph(gHandle);
+            DX.DeleteGraph(paintHandle);
             gHandle = DX.MakeScreen(Width, Height, DX.TRUE);
+            paintHandle = DX.MakeScreen(Width, Height, DX.TRUE);
 
             width = Width;
             height = Height;
         }
+    }
+
+    private void OnPaintPanel()
+    {
+        int nowScreen = DX.GetDrawScreen();
+        DX.SetDrawScreen(paintHandle);
+        DX.ClearDrawScreen();
+        OnPaint?.Invoke();
+        DX.SetDrawScreen(nowScreen);
     }
 }
