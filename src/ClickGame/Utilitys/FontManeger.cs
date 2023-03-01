@@ -35,6 +35,7 @@ internal static class FontManeger
         }
 
         Tracer.WriteInfo("Add font.");
+        font.CreateFontHandle();
         fonts.Add(font);
     }
 

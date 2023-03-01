@@ -25,7 +25,7 @@ internal struct Font
     /// <summary>
     /// フォントのハンドル
     /// </summary>
-    public int FontHandle { get; }
+    public int FontHandle { get; private set; }
 
     #endregion
 
@@ -40,8 +40,17 @@ internal struct Font
         FontName = fontName;
         FontSize = fontSize;
         FontWeight = fontWeight;
-        FontHandle = DX.CreateFontToHandle(fontName, fontSize, fontWeight, DX.DX_FONTTYPE_ANTIALIASING_8X8);
     }
+
+    /// <summary>
+    /// フォントハンドルを作成する
+    /// </summary>
+    public void CreateFontHandle()
+    {
+        Tracer.WriteInfo("Create fonthandle.");
+        FontHandle = DX.CreateFontToHandle(FontName, FontSize, FontWeight, DX.DX_FONTTYPE_ANTIALIASING_8X8);
+    }
+
 
     public static bool operator ==(Font a, Font b)
     {
