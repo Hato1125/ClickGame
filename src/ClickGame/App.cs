@@ -43,7 +43,7 @@ internal class App
     /// <summary>
     /// 最大フレームレート
     /// </summary>
-    public static double MaxFramelate { get; set; } = 60;
+    public static double MaxFramelate { get; set; } = 45;
 
     /// <summary>
     /// アプリケーションを起動する
@@ -72,6 +72,7 @@ internal class App
         }
 
         LoadGraphics.Load();
+        LoadSound.Load();
 
         SceneManeger.AddScene("Title", new Title());
         SceneManeger.AddScene("Game", new Game());

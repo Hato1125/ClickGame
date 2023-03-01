@@ -6,8 +6,9 @@ internal class Shop : SceneBase
 {
     private readonly Dictionary<string, ShopItem> shopItems = new()
     {
-        { "Clicker", new ShopItem("Clicker", GraphicsResource.GetResource("ClickerIcon"), 10, 10, 1) },
-        { "TwinClicker", new ShopItem("TwinClicker", GraphicsResource.GetResource("TwinClickerIcon"), 30, 10, 3) },
+        { "Clicker", new ShopItem("Clicker", GraphicsResource.GetResource("ClickerIcon"), 10, 5, 1) },
+        { "TwinClicker", new ShopItem("TwinClicker", GraphicsResource.GetResource("TwinClickerIcon"), 100, 10, 20) },
+        { "Plant", new ShopItem("Plant", GraphicsResource.GetResource("PlantIcon"), 1000, 20, 55) },
     };
 
     public Shop()

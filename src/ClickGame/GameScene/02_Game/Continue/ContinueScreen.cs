@@ -20,6 +20,8 @@ internal class ContinueScreen : SceneBase
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i] = new(GraphicsResource.GetResource($"ContinueButton_{i + 1}"));
+            buttons[i].SoundHandle = SoundResource.GetResource("PushButton");
+            buttons[i].IsInput = false;
             height += buttons[i].Height + BNT_INTERVAL;
         }
 

@@ -34,6 +34,7 @@ internal static class LoadGraphics
         GraphicsResource.AddResource("ShopItemPanel", $"{FILE}{GAME}Shop\\ShopItemPanel.png");
         GraphicsResource.AddResource("ClickerIcon", $"{FILE}{GAME}Shop\\ClickerIcon.png");
         GraphicsResource.AddResource("TwinClickerIcon", $"{FILE}{GAME}Shop\\TwinClickerIcon.png");
+        GraphicsResource.AddResource("PlantIcon", $"{FILE}{GAME}Shop\\PlantIcon.png");
         GraphicsResource.AddResource("ContinuePanel", $"{FILE}{GAME}Continue\\Panel.png");
         GraphicsResource.AddResource("ContinueButton", $"{FILE}{GAME}Continue\\ContinueButton.png");
         GraphicsResource.AddResource("ContinueButton_1", $"{FILE}{GAME}Continue\\ContinueButton_1.png");

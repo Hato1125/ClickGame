@@ -86,6 +86,7 @@ internal class ShopItem
 
         items = new();
         button = new(GraphicsResource.GetResource("ShopItemPanel"));
+        button.SoundHandle = SoundResource.GetResource("PushButton");
         button.OnSeparate += BuyItem;
         button.OnPaint += DrawIcon;
         button.OnPaint += DrawName;

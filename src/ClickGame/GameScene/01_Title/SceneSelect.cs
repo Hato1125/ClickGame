@@ -1,4 +1,5 @@
 ﻿using ClickGame.GUIControls;
+using DxLibDLL;
 
 namespace ClickGame.GameScene.TitleScene;
 
@@ -42,6 +43,7 @@ internal class SceneSelect : SceneBase
             int ypos = i * (buttons[i].Height + 10);
             buttons[i].X = center_x;
             buttons[i].Y = center_y + ypos;
+            buttons[i].SoundHandle = SoundResource.GetResource("PushButton");
         }
     }
 

@@ -11,6 +11,20 @@ internal class UIButton : UIElement
     private double counter;
     private double scale;
 
+    private int sound;
+    /// <summary>
+    /// サウンドハンドル
+    /// </summary>
+    public int SoundHandle
+    {
+        get => sound;
+        set
+        {
+            OnSeparate += new Action(() => { DX.PlaySoundMem(value, DX.DX_PLAYTYPE_BACK); });
+            sound = value;
+        }
+    }
+
     /// <summary>
     /// Buttonの初期化をする
     /// </summary>

@@ -16,6 +16,7 @@ internal class Continue : SceneBase
 
         continueScreen = new();
         Children.Add(continueScreen);
+        continueButton.SoundHandle = SoundResource.GetResource("PushButton");
         continueButton.OnSeparate += delegate
         {
             continueScreen.IsOpen = !continueScreen.IsOpen;
