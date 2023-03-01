@@ -5,6 +5,7 @@ internal static class LoadGraphics
     private static readonly string FILE = $"{AppContext.BaseDirectory}Asset\\Graphics\\";
     private static readonly string TITLE = "Title\\";
     private static readonly string GAME = "Game\\";
+    private static readonly string SETTING = "Setting\\";
 
     /// <summary>
     /// Groaphicsを読み込む
@@ -13,6 +14,7 @@ internal static class LoadGraphics
     {
         LoadTitleImg();
         LoadGameImg();
+        LoadSettingImg();
     }
 
     private static void LoadTitleImg()
@@ -40,5 +42,10 @@ internal static class LoadGraphics
         GraphicsResource.AddResource("ContinueButton_1", $"{FILE}{GAME}Continue\\ContinueButton_1.png");
         GraphicsResource.AddResource("ContinueButton_2", $"{FILE}{GAME}Continue\\ContinueButton_2.png");
         GraphicsResource.AddResource("ContinueButton_3", $"{FILE}{GAME}Continue\\ContinueButton_3.png");
+    }
+
+    private static void LoadSettingImg()
+    {
+        GraphicsResource.AddResource("BackButton", $"{FILE}{SETTING}BackButton.png");
     }
 }

@@ -20,7 +20,7 @@ internal struct ShopFontStyle
     /// <summary>
     /// フォントの色
     /// </summary>
-    public uint FontColor { get; init; }
+    public Color FontColor { get; init; }
 
     /// <summary>
     /// フォントのスケール
@@ -41,7 +41,7 @@ internal struct ShopFontStyle
     /// <param name="color">色</param>
     /// <param name="scale">スケール</param>
     /// <param name="position">位置</param>
-    public ShopFontStyle(string name, int size, int thick, float scale, uint color, Point position)
+    public ShopFontStyle(string name, int size, int thick, float scale, Color color, Point position)
     {
         FontName = name;
         FontSize = size;

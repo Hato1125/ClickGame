@@ -1,16 +1,20 @@
 using ClickGame.GUIControls;
+using ClickGame.Utilt;
 using DxLibDLL;
 
 namespace ClickGame.GameScene.GameScene;
 
 internal class ShopItem
 {
+    #region Private Member
+
+    private readonly FontString Font;
     private readonly ShopFontStyle NAME_STYLE = new(
         "Segoe UI",
         25,
         10,
         1.0f,
-        DX.GetColor(255, 255, 255),
+        Color.White,
         new Point(130, 23)
     );
 
@@ -19,7 +23,7 @@ internal class ShopItem
         25,
         10,
         1.0f,
-        DX.GetColor(255, 233, 48),
+        Color.White,
         new Point(130, 60)
     );
 
@@ -28,14 +32,17 @@ internal class ShopItem
         25,
         10,
         0.8f,
-        DX.GetColor(255, 255, 255),
+        Color.Yellow,
         new Point(250, 64)
     );
 
     private readonly UIButton button;
     private readonly List<Item> items;
     private readonly Size iconSize;
-    private readonly int fontHandle;
+
+    #endregion
+
+    #region Public Member
 
     /// <summary>
     /// アイテムボタンの位置
@@ -68,6 +75,8 @@ internal class ShopItem
     /// <value></value>
     public long AddNumber { get; init; }
 
+    #endregion
+
     /// <summary>
     /// アイテムを初期化する
     /// </summary>
@@ -93,11 +102,10 @@ internal class ShopItem
         button.OnPaint += DrawPrice;
         button.OnPaint += DrawItemNum;
 
-        fontHandle = DX.CreateFontToHandle(
+        Font = new(
             NAME_STYLE.FontName,
             NAME_STYLE.FontSize,
-            NAME_STYLE.FontThick,
-            DX.DX_FONTTYPE_ANTIALIASING_16X16
+            NAME_STYLE.FontThick
         );
         DX.GetGraphSize(iconHandle, out int w, out int h);
         iconSize = new(w, h);
@@ -155,24 +163,26 @@ internal class ShopItem
     {
         var priceStr = $"Name: {ShopItemName}";
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_PMA_ALPHA, 255);
-        DX.DrawStringFToHandle(
+        Font.Text = priceStr;
+        Font.FontColor = NAME_STYLE.FontColor;
+        Font.Draw(
             NAME_STYLE.Position.X,
             NAME_STYLE.Position.Y,
-            priceStr,
-            NAME_STYLE.FontColor,
-            fontHandle
+            NAME_STYLE.FontScale,
+            NAME_STYLE.FontScale
         );
     }
 
     private void DrawPrice()
     {
         var priceStr = $"Price: {Price.ToString()}";
-        DX.DrawStringFToHandle(
+        Font.Text = priceStr;
+        Font.FontColor = PRICE_STYLE.FontColor;
+        Font.Draw(
             PRICE_STYLE.Position.X,
             PRICE_STYLE.Position.Y,
-            priceStr,
-            PRICE_STYLE.FontColor,
-            fontHandle
+            PRICE_STYLE.FontScale,
+            PRICE_STYLE.FontScale
         );
     }
 
@@ -181,14 +191,13 @@ internal class ShopItem
         var priceStr = $"Num: {items.Count}";
 
         DX.SetDrawMode(DX.DX_DRAWMODE_ANISOTROPIC);
-        DX.DrawExtendStringToHandle(
+        Font.Text = priceStr;
+        Font.FontColor = NUM_STYLE.FontColor;
+        Font.Draw(
             NUM_STYLE.Position.X,
             NUM_STYLE.Position.Y,
             NUM_STYLE.FontScale,
-            NUM_STYLE.FontScale,
-            priceStr,
-            NUM_STYLE.FontColor,
-            fontHandle
+            NUM_STYLE.FontScale
         );
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 255);

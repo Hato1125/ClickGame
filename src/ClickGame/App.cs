@@ -3,6 +3,7 @@ using DxLibDLL;
 using ClickGame.Utilt;
 using ClickGame.GameScene.TitleScene;
 using ClickGame.GameScene.GameScene;
+using ClickGame.GameScene.SettingScene;
 
 namespace ClickGame;
 
@@ -76,6 +77,7 @@ internal class App
 
         SceneManeger.AddScene("Title", new Title());
         SceneManeger.AddScene("Game", new Game());
+        SceneManeger.AddScene("Setting", new Setting());
     }
 
     private void WindowLoop()
