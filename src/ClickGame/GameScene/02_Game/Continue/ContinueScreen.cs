@@ -30,6 +30,8 @@ internal class ContinueScreen : SceneBase
             buttons[i].X = (App.CliantWidth - buttons[i].Width) / 2;
             buttons[i].Y = (buttons[i].Height + BNT_INTERVAL) * i + center_y;
         }
+
+        Game.OnFadeOutEnd += GotoScene;
     }
 
     public override void Init()
@@ -55,25 +57,17 @@ internal class ContinueScreen : SceneBase
                 if (i == 2)
                     IsOpen = false;
                 else
-                    Game.IsFadeIn = false;
+                    Game.IsFadeOut = true;
 
                 InactiveButtons();
             }
         }
-
-        if (Game.IsFadeOutEnd)
-            GotoScene();
-
     }
 
     public override void Draw()
     {
         DrawPanel();
         DrawButtons();
-    }
-
-    public override void Finish()
-    {
     }
 
     private void FadeIn()
@@ -119,6 +113,7 @@ internal class ContinueScreen : SceneBase
 
     private void GotoScene()
     {
+        IsOpen = false;
         switch (gotoIndex)
         {
             case 0:

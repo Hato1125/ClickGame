@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using DxLibDLL;
 
 namespace ClickGame.Utilt;
@@ -60,5 +61,10 @@ internal struct Font
             return true;
         else
             return false;
+    }
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        return base.Equals(obj);
     }
 }

@@ -5,11 +5,14 @@ namespace ClickGame.GameScene.TitleScene;
 
 internal class SceneSelect : SceneBase
 {
+    #region Private Member
+
     private readonly int[] buttonHandle;
     private readonly string[] gotoScene;
     private readonly UIButton[] buttons;
-
     private string gotoSceneName;
+
+    #endregion
 
     public SceneSelect()
     {
@@ -64,7 +67,7 @@ internal class SceneSelect : SceneBase
                 // 遷移情報をセット
                 gotoSceneName = gotoScene[i];
                 Title.OnFadeOutEnd += GotoScene;
-                Title.FadeOut.Start();
+                Title.IsFadeOut = true;
             }
         }
     }

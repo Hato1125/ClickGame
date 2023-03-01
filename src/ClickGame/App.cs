@@ -102,6 +102,7 @@ internal class App
         GraphicsResource.RemoveAllResource();
         SoundResource.RemoveAllResource();
         LuaResource.RemoveAllResource();
+        FontManeger.RemoveAllHandle();
         DX.DxLib_End();
     }
 

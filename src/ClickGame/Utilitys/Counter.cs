@@ -70,6 +70,7 @@ internal class Counter
         IncreaseNumber = increaseNum;
         IsLoop = isLoop;
         IsStart = false;
+        State = CounterState.Stoping;
     }
 
     /// <summary>

@@ -1,37 +1,35 @@
 ﻿using DxLibDLL;
+using ClickGame.Utilt;
 
 namespace ClickGame.GameScene.GameScene;
 
 internal class NumberDisplay : SceneBase
 {
-    private const uint COLOR = 0xffffff;
-    private int fontHandle;
+    #region Private Member
 
-    public override void Init()
+    private readonly FontString Font;
+
+    #endregion
+
+    public NumberDisplay()
     {
         DX.SetFontCacheCharNum(long.MaxValue.ToString().Length);
-        fontHandle = DX.CreateFontToHandle("Segoe UI", 70, 10, DX.DX_FONTTYPE_ANTIALIASING_16X16);
+        Font = new("Segoe UI", 70, 10);
         DX.SetFontCacheCharNum(0);
-
-        base.Init();
     }
 
     public override void Draw()
     {
         var clickNumStr = ClickManeger.ClickNum.ToString();
+        var fontHandle = FontManeger.FontList.ToArray()[Font.ReferenceIndex].FontHandle;
         int width = DX.GetDrawStringWidthToHandle(clickNumStr, clickNumStr.Length, fontHandle);
+
+        Font.Text = clickNumStr;
+
         DX.SetDrawMode(DX.DX_DRAWMODE_BILINEAR);
-        DX.DrawStringFToHandle((App.CliantWidth - width) / 2.0f, 50, clickNumStr, COLOR, fontHandle);
+        Font.Draw((App.CliantWidth - width) / 2.0f, 50);
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);
 
         base.Draw();
-    }
-
-    public override void Finish()
-    {
-        if (fontHandle != -1)
-            DX.DeleteFontToHandle(fontHandle);
-
-        base.Finish();
     }
 }

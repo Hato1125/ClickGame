@@ -5,34 +5,59 @@ namespace ClickGame.GameScene.TitleScene;
 
 internal class Title : SceneBase
 {
+    #region Private Member
+
     private const string DEVNAME = "Developer: Hato1125";
-    private const uint DEVCOLOR = 0xffffff;
-    private int devNameHandle;
-    private int devNamePosX;
-    private int devNamePosY;
-    public static readonly FadeOut FadeOut = new(0.001f, 2);
+    private readonly FontString DevName;
+    private readonly Fade Fade = new(0.001f, 2);
+
+    #endregion
+
+    #region Public static Member
+
+    /// <summary>
+    /// フェードアウトをするか
+    /// </summary>
+    public static bool IsFadeOut { get; set; }
+
+    /// <summary>
+    /// フェードアウトが終了した際に呼ばれル
+    /// </summary>
     public static event Action? OnFadeOutEnd = delegate { };
+
+    #endregion
+
+    public Title()
+    {
+        DX.SetFontCacheCharNum(DEVNAME.Length);
+        DevName = new("Segoe UI", 20, 10);
+        DevName.Text = DEVNAME;
+        DX.SetFontCacheCharNum(0);
+
+        Children.Add(new SceneSelect());
+    }
 
     public override void Init()
     {
-        Children.Add(new SceneSelect());
-        DX.SetFontCacheCharNum(DEVNAME.Length);
-        devNameHandle = DX.CreateFontToHandle("Segoe UI", 20, 10, DX.DX_FONTTYPE_ANTIALIASING_16X16);
-        DX.SetFontCacheCharNum(0);
-        int h = DX.GetFontSizeToHandle(devNameHandle);
-        devNamePosX = 15;
-        devNamePosY = App.CliantHeight - (h + 15);
-        FadeOut.Reset();
-        FadeOut.Stop();
+        // NOTE: 停止させてからリセットしないとカウンターがずっと終了値になる
+        Fade.Stop();
+        Fade.Reset();
+        Fade.Start();
+        IsFadeOut = false;
 
         base.Init();
     }
 
     public override void Update()
     {
-        FadeOut.Tick();
+        Fade.Tick();
 
-        if(FadeOut.Counter.IsEnd)
+        if (Fade.Counter.Value >= Fade.Counter.EndValue / 2.0 && !IsFadeOut)
+            Fade.Stop();
+        else
+            Fade.Start();
+
+        if (Fade.Counter.IsEnd)
             OnFadeOutEnd?.Invoke();
 
         base.Update();
@@ -44,23 +69,18 @@ internal class Title : SceneBase
 
         DX.DrawGraph(0, 0, GraphicsResource.GetResource("TitleBack"), DX.TRUE);
         DX.DrawGraph((App.CliantWidth - tw) / 2, 150, GraphicsResource.GetResource("TitleLogo"), DX.TRUE);
-        DX.DrawStringToHandle(devNamePosX, devNamePosY, DEVNAME, DEVCOLOR, devNameHandle);
+        DevName.Draw(15, 15);
 
         base.Draw();
         DrawFadeOut();
     }
 
-    public override void Finish()
-    {
-        base.Finish();
-    }
-
     private void DrawFadeOut()
     {
-        if (!FadeOut.Counter.IsStart)
+        if (!Fade.Counter.IsStart)
             return;
 
-        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)FadeOut.Value);
+        DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)Fade.Value);
         DX.DrawFillBox(0, 0, App.CliantWidth, App.CliantHeight, 0x000000);
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 255);
     }

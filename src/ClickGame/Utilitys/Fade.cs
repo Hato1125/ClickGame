@@ -37,11 +37,11 @@ internal class Fade : IAnimation
 
         var rad = 0.0;
         if (Counter.Value <= Counter.EndValue / 2)
-            rad = Counter.Value;
+            rad = (Counter.Value * Math.PI) / 180.0;
         else
-            rad = Counter.EndValue - Counter.Value;
+            rad = ((Counter.EndValue - Counter.Value) * Math.PI) / 180.0;
 
-        Value = Math.Sin(rad) * 255;
+        Value = 255 - Math.Sin(rad) * 255;
     }
 
     /// <summary>
