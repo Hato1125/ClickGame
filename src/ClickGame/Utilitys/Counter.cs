@@ -81,7 +81,7 @@ internal class Counter
         if (!IsStart)
             return;
 
-        // StartしているのにストップウォッチがStartしていない
+        // StartしているのにストップウォッチがStartしていない場合
         if (!tickStopwatch.IsRunning)
             tickStopwatch.Start();
 
@@ -120,7 +120,7 @@ internal class Counter
 
         if (!tickStopwatch.IsRunning)
             tickStopwatch.Start();
-            
+
         IsStart = true;
     }
 

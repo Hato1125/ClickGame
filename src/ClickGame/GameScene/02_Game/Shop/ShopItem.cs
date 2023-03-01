@@ -23,7 +23,7 @@ internal class ShopItem
         25,
         10,
         1.0f,
-        Color.White,
+        Color.Yellow,
         new Point(130, 60)
     );
 
@@ -31,9 +31,9 @@ internal class ShopItem
         "Segoe UI",
         25,
         10,
-        0.8f,
-        Color.Yellow,
-        new Point(250, 64)
+        0.7f,
+        Color.White,
+        new Point(275, 68)
     );
 
     private readonly UIButton button;

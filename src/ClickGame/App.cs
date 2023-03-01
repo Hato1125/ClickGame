@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using DxLibDLL;
 using ClickGame.Utilt;
+using ClickGame.GUIControls;
 using ClickGame.GameScene.TitleScene;
 using ClickGame.GameScene.GameScene;
 using ClickGame.GameScene.SettingScene;
@@ -45,6 +46,8 @@ internal class App
     /// 最大フレームレート
     /// </summary>
     public static double MaxFramelate { get; set; } = 45;
+
+    private Scroll sr = new(0.001f, 1);
 
     /// <summary>
     /// アプリケーションを起動する
@@ -91,6 +94,10 @@ internal class App
             Mouse.Update();
             Keyboard.Update();
             SceneManeger.SceneView();
+
+            sr.Tick();
+            DX.DrawStringF(0, (float)sr.Value, "Akasoko", 0xffffff);
+            DX.DrawStringF(100, 100, "Akasoko", 0xffffff);
 
             DX.ScreenFlip();
             FramelateLimiter();

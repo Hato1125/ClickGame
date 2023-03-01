@@ -17,6 +17,7 @@ internal class Setting : SceneBase
         Font.Text = "Comming Soon...";
 
         backButton = new(GraphicsResource.GetResource("BackButton"));
+        backButton.SoundHandle = SoundResource.GetResource("PushButton");
         backButton.OnSeparate += Back;
         backButton.X = 15;
         backButton.Y = 15;
