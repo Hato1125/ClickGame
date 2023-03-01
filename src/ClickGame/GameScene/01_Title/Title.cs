@@ -81,11 +81,8 @@ internal class Title : SceneBase
 
     private void DrawFadeOut()
     {
-        if (!Fade.Counter.IsStart){
-            Console.WriteLine("a");
+        if (!Fade.Counter.IsStart)
             return;
-        }
-
 
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)Fade.Value);
         DX.DrawFillBox(0, 0, App.CliantWidth, App.CliantHeight, 0x000000);
