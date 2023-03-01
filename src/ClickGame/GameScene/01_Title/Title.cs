@@ -39,8 +39,6 @@ internal class Title : SceneBase
 
     public override void Init()
     {
-        // NOTE: 停止させてからリセットしないとカウンターがずっと終了値になる
-        Fade.Stop();
         Fade.Reset();
         Fade.Start();
         IsFadeOut = false;
@@ -75,10 +73,19 @@ internal class Title : SceneBase
         DrawFadeOut();
     }
 
+    public override void Finish()
+    {
+        Fade.Stop();
+        base.Finish();
+    }
+
     private void DrawFadeOut()
     {
-        if (!Fade.Counter.IsStart)
+        if (!Fade.Counter.IsStart){
+            Console.WriteLine("a");
             return;
+        }
+
 
         DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, (int)Fade.Value);
         DX.DrawFillBox(0, 0, App.CliantWidth, App.CliantHeight, 0x000000);

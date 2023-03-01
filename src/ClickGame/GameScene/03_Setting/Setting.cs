@@ -24,7 +24,6 @@ internal class Setting : SceneBase
 
     public override void Init()
     {
-        Fade.Stop();
         Fade.Reset();
         Fade.Start();
         IsFadeOut = false;
@@ -42,6 +41,10 @@ internal class Setting : SceneBase
             Fade.Start();
 
         backButton.Update();
+
+        if (Fade.Counter.IsEnd)
+            SceneManeger.SetScene("Title");
+
 
         base.Update();
     }
@@ -65,13 +68,13 @@ internal class Setting : SceneBase
 
     public override void Finish()
     {
+        Fade.Stop();
         base.Finish();
     }
 
     private void Back()
     {
         IsFadeOut = true;
-        SceneManeger.SetScene("Title");
     }
 
     private void DrawFadeOut()

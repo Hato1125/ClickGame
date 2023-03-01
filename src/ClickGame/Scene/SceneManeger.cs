@@ -84,16 +84,19 @@ internal static class SceneManeger
     /// </summary>
     public static void SceneView()
     {
-        if(scene == null)
+        if (scene == null)
             return;
 
-        if(scene.IsInit)
+        if (scene.IsInit)
         {
             scene.Init();
             scene.IsInit = false;
         }
 
-        scene.Update();
-        scene.Draw();
+        if (!scene.IsInit)
+            scene.Update();
+
+        if (!scene.IsInit)
+            scene.Draw();
     }
 }

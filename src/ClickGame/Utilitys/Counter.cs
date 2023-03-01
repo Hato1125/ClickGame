@@ -81,6 +81,10 @@ internal class Counter
         if (!IsStart)
             return;
 
+        // StartしているのにストップウォッチがStartしていない
+        if (!tickStopwatch.IsRunning)
+            tickStopwatch.Start();
+
         if (tickStopwatch.Elapsed.TotalSeconds >= TickInterval)
         {
             if (Value >= EndValue)
@@ -113,7 +117,10 @@ internal class Counter
             return;
 
         State = CounterState.Starting;
-        tickStopwatch.Start();
+
+        if (!tickStopwatch.IsRunning)
+            tickStopwatch.Start();
+            
         IsStart = true;
     }
 

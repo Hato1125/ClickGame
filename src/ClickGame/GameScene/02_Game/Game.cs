@@ -36,7 +36,6 @@ internal class Game : SceneBase
 
     public override void Init()
     {
-        Fade.Stop();
         Fade.Reset();
         Fade.Start();
         IsFadeOut = false;
@@ -67,6 +66,7 @@ internal class Game : SceneBase
 
     public override void Finish()
     {
+        Fade.Stop();
         base.Finish();
     }
 
