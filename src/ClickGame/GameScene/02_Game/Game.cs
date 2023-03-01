@@ -7,7 +7,7 @@ internal class Game : SceneBase
 {
     #region Private Member
 
-    private readonly Fade Fade = new(0.001f, 2);
+    private readonly Fade Fade = new(0.001f, 3.5);
 
     #endregion
 

@@ -133,7 +133,7 @@ internal class ShopItem
         Tracer.WriteInfo($"Add {ShopItemName}.");
         ClickManeger.PullClick(Price);
         items.Add(new Item(AddIntervalMs, AddNumber));
-        Price = (int)(Price * 1.5f);
+        Price = (int)(Price * 1.3f);
     }
 
     private void UpdateItem()

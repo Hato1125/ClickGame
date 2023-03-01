@@ -4,6 +4,8 @@ namespace ClickGame.GameScene.GameScene;
 
 internal class Effect
 {
+    #region Private Member
+
     private const int MIN_SPEED = 100;
     private const int MAX_SPEED = 400;
     private int effectHeight;
@@ -13,6 +15,8 @@ internal class Effect
     private float scale;
     private int effectType;
     private int scrollSpeed;
+
+    #endregion
 
     /// <summary>
     /// 初期化をする

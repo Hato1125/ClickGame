@@ -102,5 +102,7 @@ internal static class FontManeger
             DX.DeleteFontToHandle(font.FontHandle);
 
         fonts.Clear();
+
+        Tracer.WriteInfo("Delete all fonthandle.");
     }
 }

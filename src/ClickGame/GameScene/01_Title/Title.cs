@@ -9,7 +9,7 @@ internal class Title : SceneBase
 
     private const string DEVNAME = "Developer: Hato1125";
     private readonly FontString DevName;
-    private readonly Fade Fade = new(0.001f, 2);
+    private readonly Fade Fade = new(0.001f, 3.5);
 
     #endregion
 

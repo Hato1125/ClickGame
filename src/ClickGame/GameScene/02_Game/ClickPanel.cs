@@ -5,7 +5,7 @@ namespace ClickGame.GameScene.GameScene;
 
 internal class ClickPanel : SceneBase
 {
-    private const int SPEED = 1000;
+    private const int SPEED = 1300;
     private readonly Point POSITION = new(100, 200);
 
     private UIElement colision;
@@ -21,10 +21,6 @@ internal class ClickPanel : SceneBase
         colision = new(w, h);
         colision.X = POSITION.X;
         colision.Y = POSITION.Y;
-    }
-
-    public override void Init()
-    {
     }
 
     public override void Update()
@@ -88,9 +84,5 @@ internal class ClickPanel : SceneBase
             GraphicsResource.GetResource("ClickPanel"), DX.TRUE
         );
         DX.SetDrawMode(DX.DX_DRAWMODE_NEAREST);
-    }
-
-    public override void Finish()
-    {
     }
 }

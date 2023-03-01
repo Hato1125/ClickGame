@@ -1,5 +1,4 @@
-﻿using DxLibDLL;
-using ClickGame.GUIControls;
+﻿using ClickGame.GUIControls;
 
 namespace ClickGame.GameScene.TitleScene;
 
@@ -76,10 +75,6 @@ internal class SceneSelect : SceneBase
     {
         foreach (var btns in buttons)
             btns.Draw();
-    }
-
-    public override void Finish()
-    {
     }
 
     private void GotoScene()
