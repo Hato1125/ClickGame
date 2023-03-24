@@ -7,7 +7,7 @@ internal class Title : SceneBase
 {
     #region Private Member
 
-    private const string DEVNAME = "Developer: Hato1125";
+    private readonly string[] InfoMessage = new string[] { "Dev: Hato1125", App.AppVer };
     private readonly FontString DevName;
     private readonly Fade Fade = new(0.001f, 3.5);
 
@@ -29,9 +29,7 @@ internal class Title : SceneBase
 
     public Title()
     {
-        DX.SetFontCacheCharNum(DEVNAME.Length);
         DevName = new("Segoe UI", 20, 10);
-        DevName.Text = DEVNAME;
         DX.SetFontCacheCharNum(0);
 
         Children.Add(new SceneSelect());
@@ -67,7 +65,12 @@ internal class Title : SceneBase
 
         DX.DrawGraph(0, 0, GraphicsResource.GetResource("TitleBack"), DX.TRUE);
         DX.DrawGraph((App.CliantWidth - tw) / 2, 150, GraphicsResource.GetResource("TitleLogo"), DX.TRUE);
-        DevName.Draw(15, 15);
+
+        for (int i = 0; i < InfoMessage.Length; i++)
+        {
+            DevName.Text = InfoMessage[i];
+            DevName.Draw(15, 15 + (i * 30));
+        }
 
         base.Draw();
         DrawFadeOut();

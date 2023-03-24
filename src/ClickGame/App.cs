@@ -29,7 +29,7 @@ internal class App
     /// <summary>
     /// アプリケーションのバージョン
     /// </summary>
-    public static readonly string AppVer = "1.0.0";
+    public static readonly string AppVer = "v: 1.0.0 Alpha";
 
     /// <summary>
     /// ランダム
@@ -62,7 +62,7 @@ internal class App
         if (DX.SetOutApplicationLogValidFlag(DX.FALSE) == -1
             || DX.SetGraphMode(CliantWidth, CliantHeight, 32) == -1
             || DX.SetWindowSize(CliantWidth, CliantHeight) == -1
-            || DX.SetWindowText(AppName) == -1
+            || DX.SetWindowText($"{AppName} {AppVer}") == -1
             || DX.SetMainWindowClassName(AppName) == -1
             || DX.SetAlwaysRunFlag(DX.TRUE) == -1
             || DX.ChangeWindowMode(DX.TRUE) == -1
