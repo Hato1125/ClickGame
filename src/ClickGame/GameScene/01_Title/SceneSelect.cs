@@ -61,6 +61,10 @@ internal class SceneSelect : SceneBase
 
             if (buttons[i].IsSeparate())
             {
+                // TODO: 終了処理へ行くように実装しようか... 今はとりあえずreturnしときます。
+                if(i == buttons.Length - 1)
+                    return;
+
                 // ボタンの操作をできなくする
                 foreach (var btns in buttons)
                     btns.IsInput = false;

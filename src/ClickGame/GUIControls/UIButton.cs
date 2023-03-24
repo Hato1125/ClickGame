@@ -20,7 +20,7 @@ internal class UIButton : UIElement
         get => sound;
         set
         {
-            OnSeparate += new Action(() => { DX.PlaySoundMem(value, DX.DX_PLAYTYPE_BACK); });
+            OnSeparate += new Action(() => DX.PlaySoundMem(value, DX.DX_PLAYTYPE_BACK));
             sound = value;
         }
     }

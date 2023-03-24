@@ -133,15 +133,11 @@ internal class UIElement
     /// ホバーしたかを取得する
     /// </summary>
     public bool IsHover()
-    {
-        if (!IsInput)
-            return false;
-
-        if (Mouse.X >= X && Mouse.Y >= Y && Mouse.X <= X + Width && Mouse.Y <= Y + Height)
-            return true;
-        else
-            return false;
-    }
+        => IsInput
+            && Mouse.X >= X
+            && Mouse.Y >= Y
+            && Mouse.X <= X + Width
+            && Mouse.Y <= Y + Height;
 
     /// <summary>
     /// ホバー時に押されているかを取得する
@@ -166,16 +162,19 @@ internal class UIElement
     /// </summary>
     private void CreateDrawArea()
     {
-        if (width != Width || height != Height)
-        {
-            DX.DeleteGraph(gHandle);
-            DX.DeleteGraph(paintHandle);
-            gHandle = DX.MakeScreen(Width, Height, DX.TRUE);
-            paintHandle = DX.MakeScreen(Width, Height, DX.TRUE);
+        if (width == Width && height == Height)
+            return;
 
-            width = Width;
-            height = Height;
-        }
+        Tracer.WriteInfo($"-[{this.GetType()}] Create UIdrawarea.");
+        Tracer.WriteInfo($"|UISize: Width:{Width} Height:{Height}");
+        DX.DeleteGraph(gHandle);
+        DX.DeleteGraph(paintHandle);
+        gHandle = DX.MakeScreen(Width, Height, DX.TRUE);
+        paintHandle = DX.MakeScreen(Width, Height, DX.TRUE);
+
+        width = Width;
+        height = Height;
+
     }
 
     private void OnPaintPanel()

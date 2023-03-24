@@ -9,21 +9,21 @@ internal static class Tracer
     public static void WriteInfo(string message)
     {
         Console.ForegroundColor = InfoColor;
-        Console.WriteLine($"[Info] {message}");
+        Console.WriteLine($"[SYS:Info] {message}");
         Console.ResetColor();
     }
 
     public static void WriteWarning(string message)
     {
         Console.ForegroundColor = WarningColor;
-        Console.WriteLine($"[Warning] {message}");
+        Console.WriteLine($"[SYS:Warning] {message}");
         Console.ResetColor();
     }
 
     public static void WriteError(string message)
     {
         Console.ForegroundColor = ErrorColor;
-        Console.WriteLine($"[Error] {message}");
+        Console.WriteLine($"[SYS:Error] {message}");
         Console.ResetColor();
     }
 }
